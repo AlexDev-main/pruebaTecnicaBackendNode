@@ -1,5 +1,4 @@
-import { container }
-  from "../../../infrastructure/container/index.js";
+import { container } from "../../../infrastructure/container/index.js";
 
 export class OrderController {
 
