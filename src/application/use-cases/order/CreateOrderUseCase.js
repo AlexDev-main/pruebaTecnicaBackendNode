@@ -64,7 +64,7 @@ export class CreateOrderUseCase {
           );
 
           await this.productRepository
-            .decreaseStock(
+            .decreaseStockIfAvailable(
               product.id,
               requestItem.quantity,
               session
