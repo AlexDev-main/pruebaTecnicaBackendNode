@@ -46,6 +46,9 @@ admin@inventory.com
 password:
 Admin123*
 
+## Testing - Jest y SuperTest
+npm run test
+
 ## Swagger
 
 /api-docs
