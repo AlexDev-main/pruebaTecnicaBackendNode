@@ -52,7 +52,7 @@ const passwordHasher =
 
 const tokenService =
     new JwtTokenService(
-        env.JWT_SECRET
+        env.jwtSecret
     );
 
 const transactionManager =
