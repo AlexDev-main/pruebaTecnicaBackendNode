@@ -1,14 +1,7 @@
-import { Order }
-  from "../../../domain/entities/Order.js";
-
-import { OrderItem }
-  from "../../../domain/entities/OrderItem.js";
-
-import { ProductNotFoundError }
-  from "../../../domain/errors/ProductNotFoundError.js";
-
-import { InsufficientStockError }
-  from "../../../domain/errors/InsufficientStockError.js";
+import { Order } from "../../../domain/entities/Order.js";
+import { OrderItem } from "../../../domain/entities/OrderItem.js";
+import { ProductNotFoundError } from "../../../domain/errors/ProductNotFoundError.js";
+import { InsufficientStockError } from "../../../domain/errors/InsufficientStockError.js";
 
 export class CreateOrderUseCase {
 
@@ -31,12 +24,12 @@ export class CreateOrderUseCase {
       async (session) => {
 
         const productIds = createOrderRequest.items.map(
-            item => item.productId
-          );
+          item => item.productId
+        );
 
         const products = await this.productRepository.findByIds(
-            productIds
-          );
+          productIds
+        );
 
         let totalAmount = 0;
 
@@ -45,8 +38,8 @@ export class CreateOrderUseCase {
         for (const requestItem of createOrderRequest.items) {
 
           const product = products.find(
-              p => p.id === requestItem.productId
-            );
+            p => p.id === requestItem.productId
+          );
 
           if (!product) {
             throw new ProductNotFoundError(
