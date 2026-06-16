@@ -1,19 +1,25 @@
 import { Router } from "express";
-
 import { orderController } from "../controllers/OrderController.js";
-
 import { validateRequest } from "../middlewares/validateRequest.js";
-
-import {
-  createOrderSchema
-} from "../validators/orderValidator.js";
+import { authenticate } from "../middlewares/authenticate.js";
+import { authorize } from "../middlewares/authorize.js";
+import { ROLES } from "../../../domain/constants/roles.js";
+import { createOrderSchema } from "../validators/orderValidator.js";
 
 const router = Router();
 
 router.post(
   "/",
-  validateRequest(createOrderSchema),
-  orderController.create.bind(orderController)
+  authenticate,
+  authorize(
+    ROLES.CUSTOMER
+  ),
+  validateRequest(
+    createOrderSchema
+  ),
+  orderController.create.bind(
+    orderController
+  )
 );
 
 export default router;
