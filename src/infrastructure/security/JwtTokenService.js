@@ -19,4 +19,13 @@ export class JwtTokenService {
 
   }
 
+  verify(token) {
+
+    return jwt.verify(
+      token,
+      this.secret
+    );
+
+  }
+
 }

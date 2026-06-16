@@ -90,6 +90,7 @@ const createOrderUseCase =
   );
 
 export const container = {
+  tokenService,
   registerUserUseCase,
   loginUserUseCase,
   createProductUseCase,
