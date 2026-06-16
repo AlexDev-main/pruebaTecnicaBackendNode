@@ -1,5 +1,6 @@
 import { ROLES } from "../../../domain/constants/roles.js";
 import { UserAlreadyExistsError } from "../../../domain/errors/UserAlreadyExistsError.js";
+import { User } from "../../../domain/entities/User.js";
 
 export class RegisterUserUseCase {
 
