@@ -75,7 +75,7 @@ export class CreateOrderUseCase {
           userId,
           orderDate: new Date(),
           totalAmount,
-          items: orderItems,
+          products: orderItems,
         });
 
         await this.orderRepository.save(
