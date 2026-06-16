@@ -1,3 +1,5 @@
+import { ROLES } from "../../../domain/constants/roles.js";
+
 export class RegisterUserUseCase {
 
   constructor(
@@ -27,7 +29,7 @@ export class RegisterUserUseCase {
     const user = new User({
       email: registerRequest.email,
       password: hashedPassword,
-      role: "CUSTOMER"
+      role: ROLES.CUSTOMER
     });
 
     await this.userRepository.save(user);
