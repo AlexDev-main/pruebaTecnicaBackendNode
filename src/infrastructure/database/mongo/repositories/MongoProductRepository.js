@@ -18,8 +18,6 @@ export class MongoProductRepository extends ProductRepository {
 
     async findAll(filters = {}) {
 
-        const pipeline = [];
-
         const match = {};
 
         if (filters.name) {
@@ -42,11 +40,11 @@ export class MongoProductRepository extends ProductRepository {
             }
         }
 
-        if (Object.keys(match).length > 0) {
-            pipeline.push({
+        const pipeline = [
+            {
                 $match: match
-            });
-        }
+            }
+        ];
 
         const documents = await ProductModel.aggregate(pipeline);
 
