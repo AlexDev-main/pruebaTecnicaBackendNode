@@ -12,7 +12,7 @@ export class ProductRepository {
     throw new Error("Method not implemented");
   }
 
-  async decreaseStock(productId, quantity, session) {
+  async decreaseStockIfAvailable(productId, quantity, session) {
     throw new Error("Method not implemented");
   }
 
