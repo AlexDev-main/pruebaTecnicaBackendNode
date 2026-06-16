@@ -19,7 +19,9 @@ export class RegisterUserUseCase {
       );
 
     if (existingUser) {
-        throw new UserAlreadyExistsError(registerRequest.email);
+        throw new UserAlreadyExistsError(
+          registerRequest.email
+        );
     }
 
     const hashedPassword =
