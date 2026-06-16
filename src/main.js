@@ -1,6 +1,6 @@
 import app from "./interfaces/http/app.js";
 import { env } from "./infrastructure/config/env.js";
-import { connectMongo, disconnectMongo } from "./infrastructure/database/mongo/mongoConnection.js";
+import { connectMongo, disconnectMongo } from "./infrastructure/database/mongo/conection/mongoConnection.js";
 import { createAdminUser } from "./infrastructure/database/mongo/seeds/createAdminUser.js";
 
 const startServer = async () => {

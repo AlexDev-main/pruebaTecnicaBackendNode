@@ -1,4 +1,4 @@
-export class Item {
+export class OrderItem {
     constructor({
     productId,
     quantity,
