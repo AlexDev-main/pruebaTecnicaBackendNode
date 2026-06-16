@@ -1,4 +1,5 @@
 import { ROLES } from "../../../domain/constants/roles.js";
+import { UserAlreadyExistsError } from "../../../domain/errors/UserAlreadyExistsError.js";
 
 export class RegisterUserUseCase {
 
@@ -18,7 +19,7 @@ export class RegisterUserUseCase {
       );
 
     if (existingUser) {
-      throw new Error("User already exists");
+        throw new UserAlreadyExistsError(registerRequest.email);
     }
 
     const hashedPassword =
