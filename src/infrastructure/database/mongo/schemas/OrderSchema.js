@@ -43,7 +43,7 @@ const OrderSchema =
         required: true,
       },
 
-      items: [OrderItemSchema],
+      products: [OrderItemSchema],
     },
     {
       timestamps: true,

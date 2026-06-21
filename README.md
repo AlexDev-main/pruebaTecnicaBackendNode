@@ -32,7 +32,17 @@ evitando inconsistencias ante compras simultáneas.
 
 ## Instalación
 
-docker compose up -d
+### Opción 1: API + MongoDB con Docker Compose
+
+docker compose up -d --build
+
+La API queda disponible en:
+
+http://localhost:3000
+
+### Opción 2: MongoDB en Docker + API en local
+
+docker compose up -d mongo
 
 npm install
 

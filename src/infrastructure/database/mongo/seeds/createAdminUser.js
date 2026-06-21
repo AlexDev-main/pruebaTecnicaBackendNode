@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import { env } from "../../../../infrastructure/config/env.js";
 import { UserModel } from "../schemas/UserSchema.js";
 import { ROLES } from "../../../../domain/constants/roles.js";

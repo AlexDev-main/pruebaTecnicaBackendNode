@@ -8,7 +8,7 @@ export class ProductRepository {
     throw new Error("Method not implemented");
   }
 
-  async findByIds(ids) {
+  async findByIds(ids, session) {
     throw new Error("Method not implemented");
   }
 

@@ -42,13 +42,16 @@ describe("CreateOrderUseCase", () => {
       { id: "p1", price: 10, stock: 5 },
       { id: "p2", price: 5, stock: 3 },
     ]);
-    productRepository.decreaseStockIfAvailable.mockResolvedValue(undefined);
+    productRepository.decreaseStockIfAvailable.mockResolvedValue({ id: "p1" });
     orderRepository.save.mockResolvedValue(undefined);
 
     const result = await useCase.execute(request, "customer-1");
 
     expect(transactionManager.execute).toHaveBeenCalledTimes(1);
-    expect(productRepository.findByIds).toHaveBeenCalledWith(["p1", "p2"]);
+    expect(productRepository.findByIds).toHaveBeenCalledWith([
+      "p1",
+      "p2",
+    ], "session-1");
     expect(productRepository.decreaseStockIfAvailable).toHaveBeenNthCalledWith(
       1,
       "p1",
@@ -109,6 +112,24 @@ describe("CreateOrderUseCase", () => {
     );
 
     expect(productRepository.decreaseStockIfAvailable).not.toHaveBeenCalled();
+    expect(orderRepository.save).not.toHaveBeenCalled();
+  });
+
+  it("lanza InsufficientStockError cuando el descuento atomico falla por concurrencia", async () => {
+    const request = {
+      items: [{ productId: "p1", quantity: 2 }],
+    };
+
+    productRepository.findByIds.mockResolvedValue([
+      { id: "p1", price: 10, stock: 5 },
+    ]);
+
+    productRepository.decreaseStockIfAvailable.mockResolvedValue(null);
+
+    await expect(useCase.execute(request, "customer-1")).rejects.toBeInstanceOf(
+      InsufficientStockError
+    );
+
     expect(orderRepository.save).not.toHaveBeenCalled();
   });
 });

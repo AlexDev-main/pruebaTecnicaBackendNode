@@ -60,11 +60,17 @@ export class MongoProductRepository extends ProductRepository {
         );
     }
 
-    async findByIds(ids) {
+    async findByIds(ids, session) {
 
-        const documents = await ProductModel.find({
+        const query = ProductModel.find({
             _id: { $in: ids }
         });
+
+        if (session) {
+            query.session(session);
+        }
+
+        const documents = await query;
 
         return documents.map(
             document => this.#toEntity(document)

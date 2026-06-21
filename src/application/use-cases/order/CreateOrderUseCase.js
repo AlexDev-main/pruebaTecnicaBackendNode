@@ -28,7 +28,8 @@ export class CreateOrderUseCase {
         );
 
         const products = await this.productRepository.findByIds(
-          productIds
+          productIds,
+          session
         );
 
         let totalAmount = 0;
@@ -63,12 +64,18 @@ export class CreateOrderUseCase {
             })
           );
 
-          await this.productRepository
+          const updatedProduct = await this.productRepository
             .decreaseStockIfAvailable(
               product.id,
               requestItem.quantity,
               session
             );
+
+          if (!updatedProduct) {
+            throw new InsufficientStockError(
+              product.id
+            );
+          }
         }
 
         const order = new Order({

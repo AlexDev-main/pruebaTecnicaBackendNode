@@ -13,7 +13,7 @@ export class MongoOrderRepository  extends OrderRepository {
             userId: order.userId,
             orderDate: order.orderDate,
             totalAmount: order.totalAmount,
-            items: order.items,
+            products: order.products,
           }
         ],
         {
@@ -26,7 +26,7 @@ export class MongoOrderRepository  extends OrderRepository {
       userId: document[0].userId,
       orderDate: document[0].orderDate,
       totalAmount: document[0].totalAmount,
-      items: document[0].items,
+      products: document[0].products,
     });
 
   }
