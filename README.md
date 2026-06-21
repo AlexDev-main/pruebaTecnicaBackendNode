@@ -40,6 +40,11 @@ La API queda disponible en:
 
 http://localhost:3000
 
+Nota Docker:
+
+En el servicio app se usa MONGO_URI con directConnection=true para evitar problemas
+de descubrimiento del replica set cuando el nodo se anuncia como localhost.
+
 ### Opción 2: MongoDB en Docker + API en local
 
 docker compose up -d mongo
